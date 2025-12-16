@@ -13,7 +13,24 @@ await connectDB();
 const app = express();
 
 
-app.use(cors());  // Development ke liye sab origins allow karta hai
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const allowed = [
+        "https://dnr-matrimony.vercel.app",
+        "http://localhost:3000",
+      ];
+
+      if (!origin || allowed.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS blocked"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 
 //  Global Middlewares
 app.use(express.json());
