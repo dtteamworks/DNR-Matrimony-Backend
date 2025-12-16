@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import { errorMiddleware } from "./src/middlewares/errorMiddleware.js";
 import connectDB from "./src/config/db.js";
 import registrationRoutes from "./src/routes/registrationRoutes.js";
@@ -10,6 +11,9 @@ dotenv.config();
 await connectDB();
 
 const app = express();
+
+
+app.use(cors());  // Development ke liye sab origins allow karta hai
 
 //  Global Middlewares
 app.use(express.json());
