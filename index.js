@@ -6,12 +6,17 @@ import connectDB from "./src/config/db.js";
 import registrationRoutes from "./src/routes/registrationRoutes.js";
 import profilesRoutes from "./src/routes/profilesRoutes.js";
 import enquireRoutes from "./src/routes/enquireRoutes.js";
+import job from "./src/config/cron.js";
 
 dotenv.config();
 await connectDB();
 
 const app = express();
 
+// CRON
+if (process.env.NODE_ENV === "production") {
+  job.start();
+}
 
 app.use(
   cors({
