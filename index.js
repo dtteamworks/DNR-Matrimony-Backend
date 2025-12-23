@@ -23,6 +23,7 @@ app.use(
     origin: (origin, callback) => {
       const allowed = [
         "https://dnr-matrimony.vercel.app",
+        "https://www.dnrmatrimony.in",
         "http://localhost:3000",
       ];
 
